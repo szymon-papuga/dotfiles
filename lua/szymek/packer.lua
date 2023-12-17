@@ -64,4 +64,7 @@ return require('packer').startup(function(use)
             }
         end
     }
+
+    use("christoomey/vim-tmux-navigator")
+    use("szw/vim-maximizer")
 end)
