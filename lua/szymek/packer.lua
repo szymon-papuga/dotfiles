@@ -67,4 +67,11 @@ return require('packer').startup(function(use)
 
     use("christoomey/vim-tmux-navigator")
     use("szw/vim-maximizer")
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 end)
