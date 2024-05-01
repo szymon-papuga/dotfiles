@@ -1,2 +1,0 @@
-require("szymek.remap")
-
