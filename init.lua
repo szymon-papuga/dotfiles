@@ -1,2 +1,1 @@
-require("szymek")
-
+require("szymek.core")
