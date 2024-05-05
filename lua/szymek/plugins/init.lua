@@ -6,5 +6,12 @@ return {
     config = function()
       vim.cmd.colorscheme("rose-pine")
     end
+  },
+  {
+    "numToStr/Comment.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require('Comment').setup()
+    end
   }
 }
