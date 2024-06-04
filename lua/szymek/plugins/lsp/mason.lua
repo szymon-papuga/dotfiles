@@ -35,6 +35,7 @@ return {
 				"lua_ls",
 				"graphql",
 				"prismals",
+				"rust_analyzer",
 			},
 		})
 
