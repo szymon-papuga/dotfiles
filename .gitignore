@@ -1,8 +1,10 @@
-# Ignore everything
-*
-
-# But not these files...
+/*
 !.gitignore
+!.tmux.conf
+!.zshrc
+!/.config
+/.config/*
+!/.config/nvim
+!/.config/skhd
+!/.config/yabai
 
-# ...even if they are in subdirectories
-# !*/
