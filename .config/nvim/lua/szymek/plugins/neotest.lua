@@ -19,7 +19,6 @@ return {
 		local keymap = vim.keymap
 		local run = neotest.run
 		local summary = neotest.summary
-		local currentFile = vim.fn.expand("%")
 
 		keymap.set("n", "<leader>tn", function()
 			run.run()
@@ -27,7 +26,7 @@ return {
 		end, { desc = "run nearest test" })
 
 		keymap.set("n", "<leader>tf", function()
-			run.run(currentFile)
+			run.run(vim.fn.expand("%"))
 			summary.open()
 		end, { desc = "run the current test file" })
 
@@ -36,7 +35,7 @@ return {
 		end, { desc = "toggle test watch mode" })
 
 		keymap.set("n", "<leader>twf", function()
-			neotest.watch.toggle(currentFile)
+			neotest.watch.toggle(vim.fn.expand("%"))
 		end, { desc = "toggle test watch mode for current file" })
 
 		keymap.set("n", "<leader>ts", function()
