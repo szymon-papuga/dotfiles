@@ -17,7 +17,7 @@ return {
 		keymap.set("n", "<F5>", function()
 			require("dap").continue()
 		end)
-		keymap.set("n", "<F10>", function()
+		keymap.set("n", "<F9>", function()
 			require("dap").step_over()
 		end)
 		keymap.set("n", "<F11>", function()
