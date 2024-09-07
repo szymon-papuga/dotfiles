@@ -30,6 +30,10 @@ return {
 			summary.open()
 		end, { desc = "run the current test file" })
 
+		keymap.set("n", "<leader>tl", function()
+			run.run_last()
+		end, { desc = "run last test" })
+
 		keymap.set("n", "<leader>tw", function()
 			neotest.watch.toggle()
 		end, { desc = "toggle test watch mode" })
