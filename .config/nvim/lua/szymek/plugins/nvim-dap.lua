@@ -1,7 +1,8 @@
 return {
 	"mfussenegger/nvim-dap",
 	config = function()
-		require("dap").adapters["pwa-node"] = {
+		local dap = require("dap")
+		dap.adapters["pwa-node"] = {
 			type = "server",
 			host = "localhost",
 			port = "${port}",
@@ -12,34 +13,59 @@ return {
 			},
 		}
 
+		for _, language in ipairs({ "typescript", "javascript" }) do
+			dap.configurations[language] = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				},
+				{
+					type = "pwa-node",
+					request = "attach",
+					name = "Attach",
+					processId = require("dap.utils").pick_process,
+					cwd = "${workspaceFolder}",
+				},
+			}
+		end
+
 		local keymap = vim.keymap
 
 		keymap.set("n", "<F5>", function()
-			require("dap").continue()
+			dap.continue()
+		end)
+		keymap.set("n", "<leader>dt", function()
+			dap.terminate()
 		end)
 		keymap.set("n", "<F9>", function()
-			require("dap").step_over()
+			dap.step_over()
 		end)
 		keymap.set("n", "<F11>", function()
-			require("dap").step_into()
+			dap.step_into()
 		end)
 		keymap.set("n", "<F12>", function()
-			require("dap").step_out()
+			dap.step_out()
 		end)
 		keymap.set("n", "<Leader>b", function()
-			require("dap").toggle_breakpoint()
+			dap.toggle_breakpoint()
 		end)
 		keymap.set("n", "<Leader>B", function()
-			require("dap").set_breakpoint()
+			dap.set_breakpoint()
 		end)
 		keymap.set("n", "<Leader>lp", function()
-			require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+			dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+		end)
+		keymap.set("n", "<Leader>bc", function()
+			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 		end)
 		keymap.set("n", "<Leader>dr", function()
-			require("dap").repl.open()
+			dap.repl.open()
 		end)
 		keymap.set("n", "<Leader>dl", function()
-			require("dap").run_last()
+			dap.run_last()
 		end)
 		keymap.set({ "n", "v" }, "<Leader>dh", function()
 			require("dap.ui.widgets").hover()
@@ -79,7 +105,7 @@ return {
 		end
 
 		keymap.set("v", "<leader>de", function()
-			require("dap").repl.execute(get_visual_selection())
+			dap.repl.execute(get_visual_selection())
 		end)
 	end,
 }
