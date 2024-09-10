@@ -81,31 +81,5 @@ return {
 			local widgets = require("dap.ui.widgets")
 			widgets.centered_float(widgets.scopes)
 		end)
-
-		local function get_visual_selection()
-			-- Save the current register content and selection mode
-			local reg_save = vim.fn.getreg('"')
-			local regtype_save = vim.fn.getregtype('"')
-			local cb_save = vim.opt.clipboard:get()
-
-			vim.opt.clipboard:remove("unnamed")
-			vim.opt.clipboard:remove("unnamedplus")
-
-			-- Yank the visual selection
-			vim.cmd("silent normal! gvy")
-
-			-- Get the selected text
-			local text = vim.fn.getreg('"')
-
-			-- Restore the register and selection mode
-			vim.fn.setreg('"', reg_save, regtype_save)
-			vim.opt.clipboard = cb_save
-
-			return text
-		end
-
-		keymap.set("v", "<leader>de", function()
-			dap.repl.execute(get_visual_selection())
-		end)
 	end,
 }
