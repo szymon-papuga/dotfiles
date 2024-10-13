@@ -33,6 +33,8 @@ return {
 		end
 
 		local keymap = vim.keymap
+		local widgets = require("dap.ui.widgets")
+		local my_sidebar = widgets.sidebar(widgets.scopes)
 
 		keymap.set("n", "<F5>", function()
 			dap.continue()
@@ -78,8 +80,7 @@ return {
 			widgets.centered_float(widgets.frames)
 		end)
 		keymap.set("n", "<Leader>ds", function()
-			local widgets = require("dap.ui.widgets")
-			widgets.centered_float(widgets.scopes)
+			my_sidebar.toggle()
 		end)
 	end,
 }
