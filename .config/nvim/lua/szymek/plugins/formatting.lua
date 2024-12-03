@@ -15,10 +15,7 @@ return {
 				html = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
-				graphql = { "prettier" },
 				lua = { "stylua" },
-				rust = { "rustfmt" },
-				toml = { "taplo" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
